@@ -15,3 +15,8 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+.DS_Store
+bundle.js
+/node_server/node_modules
+/node_server/npm-debug.log
