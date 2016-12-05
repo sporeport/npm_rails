@@ -1,1 +1,36 @@
+$gutter-px: 10px;
+$gutter-keywords: margin padding;
+$gutter-sizes: (
+  xs: 0.3,
+  sm: 0.5,
+  md: 1,
+  lg: 1.5,
+  xl: 2
+);
+
+$gutter-directions: top right bottom left;
+
+@each $keyword in $gutter-keywords {
+  .u-#{str-slice(#{$keyword},1,1)} { #{$keyword}: $gutter-px !important; }
+
+  @each $size, $multipler in $gutter-sizes {
+    .u-#{str-slice(#{$keyword},1,1)}-#{$size} { #{$keyword}: $gutter-px*$multipler !important; }
+    .u-#{str-slice(#{$keyword},1,1)}-vert-#{$size} { #{$keyword}-top: $gutter-px*$multipler !important; #{$keyword}-bottom: $gutter-px*$multipler !important; }
+    .u-#{str-slice(#{$keyword},1,1)}-horz-#{$size} { #{$keyword}-left: $gutter-px*$multipler !important; #{$keyword}-right: $gutter-px*$multipler !important; }
+  }
+
+  .u-no-#{str-slice(#{$keyword},1,1)} { #{$keyword}: 0 !important; }
+  .u-no-#{str-slice(#{$keyword},1,1)}-vert { #{$keyword}-top: 0 !important; #{$keyword}-bottom: 0 !important; }
+  .u-no-#{str-slice(#{$keyword},1,1)}-horz { #{$keyword}-left: 0 !important; #{$keyword}-right: 0 !important; }
+
+  @each $direction in $gutter-directions {
+    .u-#{str-slice(#{$keyword},1,1)}-#{$direction} { #{$keyword}-#{$direction}: $gutter-px !important; }
+    .u-no-#{str-slice(#{$keyword},1,1)}-#{$direction} { #{$keyword}-#{$direction}: 0 !important; }
+
+    @each $size, $multipler in $gutter-sizes {
+      .u-#{str-slice(#{$keyword},1,1)}-#{$direction}-#{$size} { #{$keyword}-#{$direction}: $gutter-px*$multipler !important; }
+    }
+  }
+}
+
 @import "~@blueprintjs/core/dist/blueprint.css";

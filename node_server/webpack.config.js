@@ -1,11 +1,26 @@
+var path = require('path')
+
 module.exports = {
-  entry: "./javascripts/entry.js",
+  entry: "./javascripts/entry.jsx",
   output: {
     path: __dirname,
     filename: "bundle.js"
   },
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react')
+    }
+  },
   module: {
     loaders: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
       {
         test: /\.css$/,
         loaders: ["style-loader", "css-loader"]
